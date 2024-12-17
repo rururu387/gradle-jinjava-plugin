@@ -1,0 +1,10 @@
+from_yaml: Hello from yaml!
+overridden:
+  inside:
+    yaml: I am from yaml and also set in parameters.toml!
+array:
+  from_yaml:
+    - el1
+    - el2
+    - el3
+    - el4

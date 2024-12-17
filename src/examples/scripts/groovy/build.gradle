@@ -1,0 +1,40 @@
+import io.github.rururu387.JinjavaTask
+import io.github.rururu387.mergers.MergeStrategy
+import java.nio.file.Path
+
+import java.nio.file.Files
+
+// To enable autocompletion configure your IDE. Instructions for intellij in readme.md -> usage examples -> tinker
+
+plugins {
+    id("io.github.rururu387.gradle-jinjava-plugin") version "1.0-SNAPSHOT"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+TaskProvider<JinjavaTask> templateTask = tasks.register("templateTask", JinjavaTask.class) {
+    // These are not properties. Use setter methods please
+    ignoreMissingExtrasFiles(true)
+    // Verbose way to instantiate RegularFileProperty
+    final RegularFileProperty paramsFileProperty = objects.fileProperty()
+    paramsFileProperty.set(new File("../../parameters/parameters.yaml"))
+    addExtraFile(paramsFileProperty)
+    // Inline way to obtain RegularFileProperty instance via plugin extension. See JinjavaExtension.createRegularFileProperty
+    // Function can consume string, Path, File or a RegularFile. There is a similar function createDirectoryProperty too!
+    addExtraFile(jinjava.createRegularFileProperty("/Extras/file/doe/not/exist"))
+    mergeStrategy(MergeStrategy.MERGE_MAPS)
+    writeMergedValues(jinjava.createRegularFileProperty(layout.buildDirectory.file("values.yaml").get()))
+
+    ignoreMissingTemplateFiles(true)
+    final RegularFileProperty nonExistentFileProperty = jinjava.createRegularFileProperty(layout.projectDirectory.file("/Template/file/does/not/exist"))
+    // Notice .get() for layout.buildDirectory
+    addTemplateFile(nonExistentFileProperty, jinjava.createRegularFileProperty(layout.buildDirectory.file("/Destination/directories/wont/be/created").get()))
+
+    addTemplateFile(jinjava.createRegularFileProperty(new File("../../sources/subDir/src.yaml")),
+        jinjava.createDirectoryProperty(layout.buildDirectory.dir("templateOutput/subDir").get()))
+    addTemplateFile(jinjava.createRegularFileProperty(Path.of("../../sources/src.html")),
+        jinjava.createRegularFileProperty(layout.buildDirectory.file("templateOutput/index.html").get()))
+}

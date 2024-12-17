@@ -1,0 +1,10 @@
+gosling_perks:
+  - adorable
+  - lovely
+  - sweet
+  - charming
+  - cute
+  - awesome
+spring_config: |
+  activate:
+    on-profile: test

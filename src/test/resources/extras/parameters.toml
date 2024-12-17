@@ -1,0 +1,7 @@
+from_toml = "Hello from toml!"
+
+[overridden.inside]
+yaml = "I am overridden by value from parameters.yaml!"
+
+[array]
+from_toml = ["el1", "el2", "el3", "el4"]

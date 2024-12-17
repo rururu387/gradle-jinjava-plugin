@@ -1,0 +1,19 @@
+You need placeholders from multiple files in project directory resources/extras/parameters.properties to resolve this one.
+from json: Hello from json!
+Value from properties: Hello from properties!
+from toml: Hello from toml!
+from yaml: Hello from yaml!
+from unknown: Hello from unknown!
+This parameter is set via setExtras() and is never mentioned in config files: This is a value from test!
+
+In this block array templating is verified.
+Array from json: [el1, el2, el3, el4]
+from properties: property files do not support arrays
+from toml: [el1, el2, el3, el4]
+from yaml: [el1, el2, el3, el4]
+from unknown: [el1, el2, el3, el4]
+This parameter is set via setExtras() and is never mentioned in config files: [This, is, an, array, from, test]
+
+This parameter is set in toml but overridden in yaml: I am from yaml and also set in parameters.toml!
+
+And this parameter is never set and geese should be together: 🪿🪿

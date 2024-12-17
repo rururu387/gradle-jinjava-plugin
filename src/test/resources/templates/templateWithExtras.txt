@@ -1,0 +1,19 @@
+You need placeholders from multiple files in project directory resources/extras/parameters.properties to resolve this one.
+from json: {{ from_json }}
+Value from properties: {{ from_properties }}
+from toml: {{ from_toml }}
+from yaml: {{ from_yaml }}
+from unknown: {{ from_unknown }}
+This parameter is set via setExtras() and is never mentioned in config files: {{ from_set_extras }}
+
+In this block array templating is verified.
+Array from json: {{ array.from_json }}
+from properties: property files do not support arrays
+from toml: {{ array.from_toml }}
+from yaml: {{ array.from_yaml }}
+from unknown: {{ array.from_unknown }}
+This parameter is set via setExtras() and is never mentioned in config files: {{ array.set_from_extras }}
+
+This parameter is set in toml but overridden in yaml: {{ overridden.inside.yaml }}
+
+And this parameter is never set and geese should be together: 🪿{{ this.placeholder.is.never.set }}🪿
