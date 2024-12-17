@@ -1,0 +1,1 @@
+Goose is a {{ "great" | upper }} bird!

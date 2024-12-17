@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<article>
+    <h1 style="text-align:center;">A gosling from internet</h1>
+</article>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="https://images.alphacoders.com/826/826249.jpg" width="1200" height="675" onerror="this.onerror=null; this.src='https://searx.tiekoetter.com/image_proxy?url=https%3A%2F%2Fimages.alphacoders.com%2F826%2F826249.jpg&h=9964b5c414feb52eee690022a6f03bd43c33406806cc1ad3b4c2f36f6ef1637b';">
+<div style="text-align: center;">
+  <ul style="display: inline-block; text-align: left;">
+{% for gosling_perk in gosling_perks %}
+    <li>{{ gosling_perk | upper }}</li>
+{% endfor %}
+  </ul>
+</div>
+</body>
+</html>

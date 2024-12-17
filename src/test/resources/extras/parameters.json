@@ -1,0 +1,11 @@
+{
+  "from_json": "Hello from json!",
+  "array": {
+    "from_json": [
+      "el1",
+      "el2",
+      "el3",
+      "el4"
+    ]
+  }
+}
